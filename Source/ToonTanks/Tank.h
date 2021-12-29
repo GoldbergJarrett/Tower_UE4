@@ -6,9 +6,6 @@
 #include "BasePawn.h"
 #include "Tank.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class TOONTANKS_API ATank : public ABasePawn
 {
@@ -21,6 +18,12 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void Tick(float DeltaTime) override;
+
+	void HandleDestruction();
+
+	APlayerController* GetTankPlayerController() const { return TankPlayerController; }
+
+	bool bAlive = true;
 
 protected:
 	// Called when the game starts or when spawned
@@ -42,5 +45,5 @@ private:
 	void Move(float Value);
 	void Turn(float Value);
 	
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 };
